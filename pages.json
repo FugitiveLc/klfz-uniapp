@@ -1,0 +1,65 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+			{
+				"path": "pages/index/index",
+				"style": {
+					"navigationBarTitleText": "首页" 
+				}
+			},
+		  {
+			"path": "pages/classify/classify",
+			"style": {
+				"navigationBarTitleText": "分类"
+			} 
+		},	
+			 {
+				"path" : "pages/articleByClassify/articleByClassify",
+				"style" : {
+					"navigationBarTitleText": "文章类型" 
+				}
+			},
+		{
+		    "path" : "pages/details/details",
+		    "style" : {
+				"navigationBarTitleText": "详情"
+			}
+		},
+		
+		
+		{
+			"path": "pages/collection/collection",
+			"style": {
+				"navigationBarTitleText": "收藏"
+			}
+		}
+		
+	    
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#37ABD0",
+		"backgroundColor": "#37ABD0"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#3cc51f",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/collection/collection",
+	        "iconPath": "static/img/collection.png",
+	        "selectedIconPath": "static/img/collection-1.png",
+	        "text": "收藏"
+	    }, {
+	        "pagePath": "pages/index/index",
+	        "iconPath": "static/img/home.png",
+	        "selectedIconPath": "static/img/home-1.png",
+	        "text": "首页"
+	    }, {
+		    "pagePath": "pages/classify/classify",
+		    "iconPath": "static/img/classify.png",
+		    "selectedIconPath": "static/img/classify-1.png",
+		    "text": "分类"
+		}]
+	}
+}
