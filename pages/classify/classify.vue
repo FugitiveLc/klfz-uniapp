@@ -14,7 +14,7 @@
 </template> 
 
 <script>
- import {BASE_URL} from '../../js/request.js'
+import {getAllCategory} from '../../js/request.js'
 	export default {
 		data() {
 			return {
@@ -23,20 +23,19 @@
 		},
 		onLoad(){
 			//拉取所有 分类
-			uni.request({
-				url:`${BASE_URL}category`,
-				success: (res) => {
-					if(res.data.code==200){
-						this.categorys = res.data.data;
-					}else{
-						uni.showModal({
-							title:"提示",
-							content:"网络出了点小问题...",
-							showCancel:false
-						})
-					}
+			getAllCategory().then(r =>{
+					let [err,res]=r;
+				if(res.data.code==200){
+					this.categorys = res.data.data;
+				}else{
+					uni.showModal({
+						title:"提示",
+						content:"网络出了点小问题...",
+						showCancel:false
+					})
 				}
 			})
+			 
 		},
 		methods: {
 			toPath(categoryId,categoryName){

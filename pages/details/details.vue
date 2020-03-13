@@ -13,7 +13,7 @@
 
 <script>
   import uParse from '@/components/u-parse/u-parse.vue'
- import {BASE_URL} from '../../js/request.js'
+ import {getArticleById} from '../../js/request.js'
 	export default {
 		data() {
 			return {
@@ -24,18 +24,16 @@
 			uParse  
 		},
 		onLoad(options){
-			uni.request({
-				url:`${BASE_URL}article/${options.id}`, 
-				success: (res) => { 
-					if(res.data.code==200){
-						this.article=res.data.data;
-					}else{
-						uni.showModal({
-							title:"提示",
-							content:"网络出了点小问题...",
-							showCancel:false
-						})
-					}
+			getArticleById(id).then(r=>{
+				let[err,res] = r;
+				if(res.data.code==200){
+					this.article=res.data.data;
+				}else{
+					uni.showModal({
+						title:"提示",
+						content:"网络出了点小问题...",
+						showCancel:false
+					})
 				}
 			})
 		},

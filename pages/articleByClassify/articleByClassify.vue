@@ -8,7 +8,7 @@
 <script>
 	import ArticleItem from '../../components/ArticleItem.vue'
 	import BottonTips from '../../components/BottonTips.vue'
-	import {BASE_URL} from '../../js/request.js'
+	import {getArticleByCategoryPage} from '../../js/request.js'
 	export default {
 		data() {
 			return {
@@ -29,20 +29,16 @@
 			  uni.setNavigationBarTitle({
 			            title:option.name
 			        });
-			uni.request({  
-				url:`${BASE_URL}article/${this.id}/category`, 
-				data:{  
+			 getArticleByCategoryPage(this.id,{  
 					size:10
-				},
-				success: (res) => { 
-					console.log(res)
-					 this.current=res.data.data.current; //获取到当页的页码
-					 this.list= res.data.data.records;
-					 if(res.data.data.pages<=this.current){
-					 	this.end=true; 
-					 } 
-				}
-			})
+				}).then(r =>{
+			     let [err,res]=r;
+				 this.current=res.data.data.current; //获取到当页的页码
+				 this.list= res.data.data.records;
+				 if(res.data.data.pages<=this.current){
+				 	this.end=true; 
+				 }
+			 })
 		},
 		onReachBottom() {
 		   if(this.end) return;  //已经是最后页
@@ -50,37 +46,25 @@
 			   title: '加载中...',
 			   mask:true
 		   });
-			uni.request({
-				url:`${BASE_URL}article/${this.id}/category`, 
-				data:{
+		   getArticleByCategoryPage({
 					current:this.current+1,
 					size:10
-				}, 
-				success: (res) => { 
-					this.current=res.data.data.current;
-					uni.hideLoading() 
-					if(res.data.code==200){
-						this.list=this.list.concat(res.data.data.records)
-						if(res.data.data.pages<=this.current){
-							this.end=true; 
-						} 
-					}else{
-						uni.showModal({
-							title:"提示",
-							content:"网络出了点小问题...",
-							showCancel:false
-						})
-					}
-				}
-			})
-		 },
-		methods: {
-			 
-		}
+				}).then(res =>{
+		   			this.current=res.data.data.current;
+		   			uni.hideLoading() 
+		   			if(res.data.code==200){
+		   				this.list=this.list.concat(res.data.data.records)
+		   				if(res.data.data.pages<=this.current){
+		   					this.end=true; 
+		   				} 
+		   			}else{
+		   				uni.showModal({
+		   					title:"提示",
+		   					content:"网络出了点小问题...",
+		   					showCancel:false
+		   				})
+		   			}	  
+		   })			 
+		 } 
 	}
 </script>
-
-<style lang="scss" >
-
-
-</style>
