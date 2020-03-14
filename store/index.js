@@ -22,6 +22,7 @@
 		   },
 		   initCollectShow(state,val){ //进入收藏页面  
 			    state.collectShow=val;
+				console.log(state.collectShow)
 		   },
 		   unshiftCollect(state,val){
 			     state.collect.unshift(val);

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<article-item   v-for="item in $store.state.collectShow " :article="item"
+		<article-item   v-for="item in list " :article="item"
 		 :key="item.articleId" ></article-item>
 		<botton-tips  v-if="isEnd" :tips="info"></botton-tips> 
 	</view>
@@ -27,17 +27,19 @@
 				  let len=this.$store.state.collect.length;
 				  this.info=  len==0 ?'你还没有收藏呀！':'就这么多了，没了!' 
 				return len==0 || len>=10 && len == this.$store.state.collectShow.length;
+			 },
+			 list(){
+				return  this.$store.state.collectShow;
 			 }
 		},
 		onLoad() {
 			//拿到收藏的id数组  数组长度少于10则加载出来 否则 加载前10条
 			let coll=this.$store.state.collect;
 			if(coll.length==0){ //没有收藏
-				 this.info='你还没有收藏呀！';
-				
+				 this.info='你还没有收藏呀！';			
 				 return;
 			}
-			let ids= coll.length>10?coll.slice(0,10):coll;
+			let ids= coll.length>10 ? coll.slice(0,10):coll;
 			getArticleByIds(
 				 {
 					'ids[]':ids,
