@@ -46,12 +46,13 @@
 			   title: '加载中...',
 			   mask:true
 		   });
-		   getArticleByCategoryPage({
+		   getArticleByCategoryPage(this.id,{
 					current:this.current+1,
 					size:10
-				}).then(res =>{
+				}).then(r =>{
+					uni.hideLoading() 
+					let [err,res] = r;
 		   			this.current=res.data.data.current;
-		   			uni.hideLoading() 
 		   			if(res.data.code==200){
 		   				this.list=this.list.concat(res.data.data.records)
 		   				if(res.data.data.pages<=this.current){
