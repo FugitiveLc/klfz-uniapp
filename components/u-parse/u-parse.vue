@@ -93,7 +93,6 @@ export default {
       };
       const results = HtmlToJson(parseData, customHandler, imageProp, this);
       this.imageUrls = results.imageUrls;
-      console.log(results)
       return results.nodes;
     },
   },

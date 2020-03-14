@@ -16,7 +16,6 @@
 			article:Object
 		},methods:{
 			toPath(id){
-				console.log(id)
 				uni.navigateTo({
 					url:`/pages/details/details?id=${id}`
 				});
