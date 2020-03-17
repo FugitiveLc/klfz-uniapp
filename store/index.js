@@ -52,7 +52,7 @@
 				if(showIndex == -1){ //显示列表中没有 所以 要拉取信息 然后添加到显示列表第一个
 					//拉取文章信息 并且添加到显示列表
 					getArticleByIds({
-					  'ids[]':[val.id]		   
+					  'ids':[val.id]		   
 					}).then(r=>{
 						let [err,res] =r;
 						context.commit('unshiftCollectShow',res.data.data[0])		   
@@ -68,6 +68,9 @@
 				}
 				context.commit('deleteCollectIndex',index)
 			}
+			console.log("最新的id"+val.id);
+			console.log(context.state.collect);
+			console.log("序列化 "+JSON.stringify(context.state.collect));
 			//同步至缓存中 TODO
 			uni.setStorage({
 			    key: context.state.collKey,

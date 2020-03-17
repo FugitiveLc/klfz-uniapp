@@ -3,12 +3,16 @@
 	export default {
 		onLaunch: function() {
 		  //加载我的收藏
+		 
 		  uni.getStorage({
 		      key: this.$store.state.collKey,
 		      success:  (res) => {
 			      this.$store.dispatch('initCollect',JSON.parse(res.data))
+				  console.log("取出来")
+				  console.log(JSON.parse(res.data))
 		      }
 		  });
+		  
 		},
 		onShow: function() {
 		},

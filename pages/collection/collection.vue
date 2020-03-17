@@ -40,9 +40,10 @@
 				 return;
 			}
 			let ids= coll.length>10 ? coll.slice(0,10):coll;
+			if(ids.length==0) return;
 			getArticleByIds(
 				 {
-					'ids[]':ids,
+					'ids':ids,
 				 }).then(r =>{
 				  let [err,res] =r; 
 				  this.$store.commit('initCollectShow',res.data.data)
@@ -63,7 +64,7 @@
 			     mask:true
 			  });
 			  getArticleByIds({				
-				  'ids[]':ids		   
+				  'ids':ids		   
 			  }).then(r=>{
 				   uni.hideLoading() 
 				  let [err,res] =r;

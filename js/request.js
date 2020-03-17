@@ -1,4 +1,4 @@
-const BASE_URL = "http://zaixiahuangfeihongqingcijiao.top:8080/";
+const BASE_URL = "http://zaixiahuangfeihongqingcijiao.top:8081/mobile/";
 //const BASE_URL = "http://localhost:8081/";
 // 获取分页获取文章  getArticlePage 
 export const getArticlePage = params=>{
